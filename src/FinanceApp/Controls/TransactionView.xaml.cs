@@ -18,6 +18,15 @@ public partial class TransactionView : ContentView
         set { SetValue(IconProperty, value); }
     }
 
+    public static BindableProperty IconBackgroundColorProperty = BindableProperty.Create(propertyName: nameof(IconBackgroundColor), returnType: typeof(Color), declaringType: typeof(TransactionView),
+       defaultValue: null, defaultBindingMode: BindingMode.TwoWay);
+
+    public Color IconBackgroundColor
+    {
+        get { return (Color)GetValue(IconBackgroundColorProperty); }
+        set { SetValue(IconBackgroundColorProperty, value); }
+    }
+
     public static BindableProperty TitleProperty = BindableProperty.Create(propertyName: nameof(Title), returnType: typeof(string), declaringType: typeof(TransactionView),     
         defaultValue: string.Empty, defaultBindingMode: BindingMode.TwoWay);
     

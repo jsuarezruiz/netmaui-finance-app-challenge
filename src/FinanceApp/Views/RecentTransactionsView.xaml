@@ -209,6 +209,7 @@
                     Style="{StaticResource TitleTextStyle}"/>
                 <controls:TransactionView
                     Grid.Row="1"
+                    IconBackgroundColor="Transparent"
                     Icon="email_icon.png"
                     Title="Payment"
                     Description="Payment from Andrea"

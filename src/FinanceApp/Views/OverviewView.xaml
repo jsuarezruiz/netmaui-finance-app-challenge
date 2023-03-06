@@ -74,12 +74,12 @@
             
             <Style x:Key="BannerQuantityTextStyle" TargetType="Label">
                 <Setter Property="FontSize" Value="Small" />
+                <Setter Property="TextColor" Value="{StaticResource AccentColor}" />
                 <Setter Property="HorizontalOptions" Value="Center" />
                 <Setter Property="Margin" Value="0, 6" />
             </Style>
 
             <Style x:Key="BannerInfoTextStyle" TargetType="Label">
-                <Setter Property="FontFamily" Value="Cocogoose" />
                 <Setter Property="FontSize" Value="Micro" />
                 <Setter Property="HorizontalOptions" Value="Center" />
                 <Setter Property="TextColor" Value="Black" />
@@ -203,16 +203,19 @@
                     Style="{StaticResource DateTextStyle}"/>
             </Grid>
             <controls:TransactionView
+                IconBackgroundColor="#E5E8F9"
                 Icon="arrow_up_icon.png"
                 Title="Sent"
                 Description="Sending Payment to Clients"
                 Price="$150"/>
             <controls:TransactionView
+                IconBackgroundColor="#E5E8F9"
                 Icon="arrow_down_icon.png"
                 Title="Receive"
                 Description="Receiving Salary from company"
                 Price="$250"/>
             <controls:TransactionView
+                IconBackgroundColor="#E5E8F9"
                 Icon="money_icon.png"
                 Title="Loan"
                 Description="Loan for the Car"

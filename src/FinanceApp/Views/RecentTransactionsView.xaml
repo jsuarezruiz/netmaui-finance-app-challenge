@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="FinanceApp.Views.RecentTransactionsView"
+    xmlns:layouts="clr-namespace:FinanceApp.Layouts"
+    xmlns:controls="clr-namespace:FinanceApp.Controls"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="{StaticResource PageBackgroundColor}"
+    Title="Recent Transactions">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Color x:Key="PageBackgroundColor">#EDF1FC</Color>
+            <Color x:Key="AccentColor">#555C92</Color>
+
+            <Style x:Key="NavigationIconStyle" TargetType="Image">
+                <Setter Property="Aspect" Value="AspectFit" />
+                <Setter Property="WidthRequest" Value="24" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Margin" Value="-6, 12, 0, 12" />
+            </Style>
+
+            <Style x:Key="TitleTextStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="Cocogoose" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="{StaticResource AccentColor}" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            
+            <Style x:Key="SeeAllTextStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="10" />
+                <Setter Property="TextColor" Value="DarkGray" />
+                <Setter Property="HorizontalOptions" Value="End" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+
+            <Color x:Key="DetailsButtonBackgroundColor">#3E4685</Color>
+            
+            <Style x:Key="TransactionTypeCollectionStyle" TargetType="CollectionView">
+                <Setter Property="Margin" Value="0, 24" />
+            </Style>
+            
+            <Style x:Key="TransactionTypeItemStyle" TargetType="Grid">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter TargetName="TransactionTypeText" Property="Label.TextColor" Value="Black" />
+                                    <Setter TargetName="SelectedIndicator" Property="BoxView.BackgroundColor" Value="White" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter TargetName="TransactionTypeText" Property="Label.TextColor" Value="White" />
+                                    <Setter TargetName="SelectedIndicator" Property="BoxView.BackgroundColor" Value="{StaticResource DetailsButtonBackgroundColor}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            
+            <Style x:Key="TransactionTypeBorderStyle" TargetType="Border">
+                <Setter Property="StrokeShape" Value="RoundRectangle 24" />
+                <Setter Property="StrokeThickness" Value="0" />
+                <Setter Property="Padding" Value="8" />
+            </Style>
+            
+            <Style x:Key="TransactionTypeTextStyle" TargetType="Label">
+                <Setter Property="Margin" Value="12, 0" />
+            </Style>
+
+            <Style x:Key="RingStyle" TargetType="Ellipse">
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            
+            <Style x:Key="FirstRingStyle" TargetType="Ellipse"
+                   BasedOn="{StaticResource RingStyle}">
+                <Setter Property="Stroke" Value="{StaticResource DetailsButtonBackgroundColor}" />
+                <Setter Property="StrokeThickness" Value="4" />
+                <Setter Property="Fill" Value="Transparent" />
+                <Setter Property="HeightRequest" Value="100" />
+                <Setter Property="WidthRequest" Value="100" />
+            </Style>
+
+            <Color x:Key="SecondRingColor">#D6E6FD</Color>
+            
+            <Style x:Key="SecondRingStyle" TargetType="Ellipse"
+                   BasedOn="{StaticResource RingStyle}">
+                <Setter Property="Stroke" Value="{StaticResource SecondRingColor}" />
+                <Setter Property="StrokeThickness" Value="18" />
+                <Setter Property="Fill" Value="Transparent" />
+                <Setter Property="HeightRequest" Value="180" />
+                <Setter Property="WidthRequest" Value="180" />
+            </Style>
+
+            <Color x:Key="ThirdRingColor">#E7E9FE</Color>
+            
+            <Style x:Key="ThirdRingStyle" TargetType="Ellipse"
+                   BasedOn="{StaticResource RingStyle}">
+                <Setter Property="Stroke" Value="{StaticResource ThirdRingColor}" />
+                <Setter Property="StrokeThickness" Value="2" />
+                <Setter Property="Fill" Value="Transparent" />
+                <Setter Property="HeightRequest" Value="240" />
+                <Setter Property="WidthRequest" Value="240" />
+            </Style>
+
+            <Style x:Key="ProfileIconStyle" TargetType="Border">
+                <Setter Property="StrokeShape" Value="Ellipse" />
+                <Setter Property="Background" Value="{StaticResource DetailsButtonBackgroundColor}" />
+                <Setter Property="HeightRequest" Value="80" />
+                <Setter Property="WidthRequest" Value="80" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+
+            <Style x:Key="UserBorderStyle" TargetType="Border">
+                <Setter Property="StrokeShape" Value="Ellipse" />
+                <Setter Property="Background" Value="{StaticResource DetailsButtonBackgroundColor}" />
+                <Setter Property="Stroke" Value="White" />
+                <Setter Property="StrokeThickness" Value="4" />
+                <Setter Property="HeightRequest" Value="60" />
+                <Setter Property="WidthRequest" Value="60" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+
+            <Style x:Key="DetailsButtonStyle" TargetType="Button">
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="BackgroundColor" Value="{StaticResource DetailsButtonBackgroundColor}" />
+                <Setter Property="HeightRequest" Value="50" />
+                <Setter Property="CornerRadius" Value="24" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid
+        Padding="24, 12">
+        <Grid
+            RowDefinitions="Auto, Auto, Auto, *, Auto">
+            <!-- NAVIGATION -->
+            <Grid
+                ColumnDefinitions="*, *">
+                <Image
+                    Source="back_icon.png"
+                    Style="{StaticResource NavigationIconStyle}">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding GoBackCommand}"/>
+                    </Image.GestureRecognizers>
+                </Image>
+            </Grid>
+            <!-- RECENT TRANSITIONS -->
+            <Grid
+                Grid.Row="1"
+                RowDefinitions="Auto, *">
+                <Grid
+                    ColumnDefinitions="*, *">
+                    <Label 
+                        Text="Recent Transactions"
+                        Style="{StaticResource TitleTextStyle}"/>
+                    <Label
+                        Grid.Column="1"
+                        Text="See all"
+                        Style="{StaticResource SeeAllTextStyle}"/>
+                </Grid>
+                <CollectionView
+                    Grid.Row="1"
+                    ItemsSource="{Binding TransactionTypes}"
+                    SelectionMode="Single"
+                    SelectedItem="{Binding SelectedTransactionType}"
+                    Style="{StaticResource TransactionTypeCollectionStyle}">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout 
+                            Orientation="Horizontal"
+                            ItemSpacing="6" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid
+                                BackgroundColor="{StaticResource PageBackgroundColor}"
+                                Style="{StaticResource TransactionTypeItemStyle}">
+                                <Border
+                                    x:Name="SelectedIndicator"
+                                    Style="{StaticResource TransactionTypeBorderStyle}">
+                                    <Label 
+                                        x:Name="TransactionTypeText"
+                                        Text="{Binding}"
+                                        Style="{StaticResource TransactionTypeTextStyle}"/>
+                                </Border>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
+            <!-- TODAY -->
+            <Grid
+                Grid.Row="2"
+                RowDefinitions="Auto, *">
+                <Label 
+                    Text="Today"
+                    Style="{StaticResource TitleTextStyle}"/>
+                <controls:TransactionView
+                    Grid.Row="1"
+                    Icon="email_icon.png"
+                    Title="Payment"
+                    Description="Payment from Andrea"
+                    Price="$30.00"/>
+            </Grid>
+            <!-- GRAPH -->
+            <Grid
+                Grid.Row="3">
+                <Ellipse 
+                    Style="{StaticResource FirstRingStyle}"/>
+                <Ellipse 
+                    Style="{StaticResource SecondRingStyle}"/>
+                <Ellipse 
+                    Style="{StaticResource ThirdRingStyle}"/>
+                <Border 
+                    Style="{StaticResource ProfileIconStyle}">
+                    <Image
+                        Source="main_face.png"/>
+                </Border>
+                <layouts:CircularLayout  
+                    Orientation="Clockwise">
+                    <Border 
+                        layouts:CircularLayout.Angle="0" 
+                        layouts:CircularLayout.Radius="120"
+                        Style="{StaticResource UserBorderStyle}">
+                        <Image 
+                            Source="face01.png" />
+                    </Border>
+                    <Border 
+                        layouts:CircularLayout.Angle="90" 
+                        layouts:CircularLayout.Radius="120"
+                        Style="{StaticResource UserBorderStyle}">
+                        <Image 
+                            Source="face02.png" />
+                    </Border>
+                    <Border 
+                        layouts:CircularLayout.Angle="150" 
+                        layouts:CircularLayout.Radius="120"
+                        Style="{StaticResource UserBorderStyle}">
+                        <Image 
+                            Source="face03.png" />
+                    </Border>
+                    <Border 
+                        layouts:CircularLayout.Angle="210" 
+                        layouts:CircularLayout.Radius="120"
+                        Style="{StaticResource UserBorderStyle}">
+                        <Image 
+                            Source="face04.png" />
+                    </Border>
+                    <Border 
+                        layouts:CircularLayout.Angle="270" 
+                        layouts:CircularLayout.Radius="120"
+                        Style="{StaticResource UserBorderStyle}">
+                        <Image 
+                            Source="face05.png" />
+                    </Border>
+                </layouts:CircularLayout>
+            </Grid>
+            <!-- SEE DETAILS -->
+            <Button 
+                Grid.Row="4"
+                Text="See Details"
+                Style="{StaticResource DetailsButtonStyle}"/>
+        </Grid>
+    </Grid>
+</ContentPage>

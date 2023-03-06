@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="FinanceApp.Controls.TabBar">
+    <ContentView.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="TabBarStyle" TargetType="Layout">
+                <Setter Property="Margin" Value="12" />
+            </Style>
+            
+            <Style x:Key="TabIconStyle" TargetType="Image">
+                <Setter Property="Aspect" Value="AspectFit" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="Opacity" Value="0.75" />
+                <Setter Property="WidthRequest" Value="36" />
+            </Style>
+            
+            <Color x:Key="AccentColor">#555C92</Color>
+            
+            <Style x:Key="MainTabIconBorderStyle" TargetType="Border">
+                <Setter Property="StrokeShape" Value="RoundRectangle 12" />
+                <Setter Property="StrokeThickness" Value="0" />
+                <Setter Property="BackgroundColor" Value="{StaticResource AccentColor}" />
+                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="WidthRequest" Value="40" />
+            </Style>
+            
+            <Style x:Key="MainTabIconStyle" TargetType="Image">
+                <Setter Property="Aspect" Value="AspectFit" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="WidthRequest" Value="24" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <Grid
+        ColumnDefinitions="*,*,*,*,*"
+        Style="{StaticResource TabBarStyle}">
+        <Image
+            Source="home_icon.png"
+            Style="{StaticResource TabIconStyle}"/>
+        <Image
+            Grid.Column="1"
+            Source="credit_card_icon.png"
+            Style="{StaticResource TabIconStyle}"/>
+        <Border
+            Grid.Column="2"
+            Style="{StaticResource MainTabIconBorderStyle}">
+            <Image 
+                Source="plus_icon.png"
+                Style="{StaticResource MainTabIconStyle}"/>
+        </Border>
+        <Image 
+            Grid.Column="3"
+            Source="dollar_icon.png"
+            Style="{StaticResource TabIconStyle}"/>
+        <Image 
+            Grid.Column="4"
+            Source="profile_icon.png"
+            Style="{StaticResource TabIconStyle}"/>
+    </Grid>
+</ContentView>

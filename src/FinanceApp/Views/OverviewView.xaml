@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="FinanceApp.Views.OverviewView"
+    xmlns:controls="clr-namespace:FinanceApp.Controls"
+    Background="{StaticResource PageBackgroundColor}"
+    Shell.NavBarIsVisible="False"
+    Title="Overview">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Color x:Key="PageBackgroundColor">#EDF1FC</Color>
+            <Color x:Key="AccentColor">#555C92</Color>
+
+            <Style x:Key="OverviewBorderStyle" TargetType="Border">
+                <Setter Property="StrokeShape" Value="RoundRectangle 24" />
+                <Setter Property="StrokeThickness" Value="0" />
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="Margin" Value="24, 24, 24, 12" />
+            </Style>
+
+            <Style x:Key="OverviewInfoPanelStyle" TargetType="Layout">
+                <Setter Property="Margin" Value="24, 12" />
+            </Style>
+            
+            <Style x:Key="MenuIconStyle" TargetType="Image">
+                <Setter Property="Aspect" Value="AspectFit" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="WidthRequest" Value="24" />
+                <Setter Property="Margin" Value="12" />
+            </Style>
+
+            <Style x:Key="TitleTextStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="Cocogoose" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="{StaticResource AccentColor}" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            
+            <Style x:Key="NotificationIconStyle" TargetType="Image">
+                <Setter Property="Aspect" Value="AspectFit" />
+                <Setter Property="WidthRequest" Value="30" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Margin" Value="6, 0" />
+            </Style>
+
+            <Style x:Key="NameTextStyle" TargetType="Label" BasedOn="{StaticResource TitleTextStyle}">
+                <Setter Property="HorizontalOptions" Value="Center" />
+            </Style>
+
+            <Style x:Key="DateTextStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="{StaticResource AccentColor}" />
+                <Setter Property="HorizontalOptions" Value="End" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+
+            <Style x:Key="PositionTextStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="Micro" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+            
+            <Style x:Key="BannerIconStyle" TargetType="Border">
+                <Setter Property="StrokeShape" Value="Ellipse" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="HeightRequest" Value="90" />
+                <Setter Property="WidthRequest" Value="90" />
+                <Setter Property="Margin" Value="0, 12" />
+            </Style>
+            
+            <Style x:Key="BannerQuantityTextStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="Small" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="Margin" Value="0, 6" />
+            </Style>
+
+            <Style x:Key="BannerInfoTextStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="Cocogoose" />
+                <Setter Property="FontSize" Value="Micro" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+
+            <Style x:Key="VerticalSeparatorStyle" TargetType="BoxView">
+                <Setter Property="WidthRequest" Value="1" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="BackgroundColor" Value="LightGray" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid
+        RowDefinitions="Auto, *, Auto">
+        <Border
+            Style="{StaticResource OverviewBorderStyle}">
+            <Border.Shadow>
+                <Shadow
+                    Radius="12"
+                    Opacity="0.15"
+                    Offset="6, 6"/>
+            </Border.Shadow>
+            <Grid
+                RowDefinitions="Auto, *, Auto">
+                <Grid
+                    ColumnDefinitions="*, *">
+                    <Image 
+                        Source="menu_icon.png"
+                        Style="{StaticResource MenuIconStyle}"/>
+                    <Image 
+                        Grid.Column="1" 
+                        HorizontalOptions="End"
+                        Style="{StaticResource MenuIconStyle}"/>
+                </Grid>
+                <Grid
+                    Grid.Row="1"
+                    RowDefinitions="*, Auto, Auto">
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding GoToDetailsCommand}"/>
+                    </Grid.GestureRecognizers>
+                    <Border 
+                        Background="{StaticResource AccentColor}"
+                        Style="{StaticResource BannerIconStyle}">
+                        <Image
+                            Source="main_face.png"/>
+                    </Border>
+                    <Label 
+                        Grid.Row="1"
+                        Text="Hira Riaz"
+                        Style="{StaticResource NameTextStyle}"/>
+                    <Label 
+                        Grid.Row="2"
+                        Text="UX/UI Designer"
+                        Style="{StaticResource PositionTextStyle}"/>
+                </Grid>
+                <Grid
+                    Grid.Row="2"
+                    ColumnDefinitions="*,Auto,*,Auto,*"
+                    Margin="20, 40">
+                    <Grid
+                        RowSpacing="0"
+                        RowDefinitions="Auto, Auto">
+                        <Label 
+                            Text="$8900"
+                            Style="{StaticResource BannerQuantityTextStyle}"/>
+                        <Label 
+                            Grid.Row="1"
+                            Text="Income"
+                            Style="{StaticResource BannerInfoTextStyle}"/>
+                    </Grid>
+                    <BoxView
+                        Grid.Column="1"
+                        Style="{StaticResource VerticalSeparatorStyle}"/>
+                    <Grid
+                        Grid.Column="2"
+                        RowSpacing="0"
+                        RowDefinitions="Auto, Auto">
+                        <Label 
+                            Text="$5500"
+                            Style="{StaticResource BannerQuantityTextStyle}"/>
+                        <Label 
+                            Grid.Row="1"
+                            Text="Expenses"
+                            Style="{StaticResource BannerInfoTextStyle}"/>
+                    </Grid>
+                    <BoxView
+                        Grid.Column="3"
+                        Style="{StaticResource VerticalSeparatorStyle}"/>
+                    <Grid
+                            Grid.Column="4"
+                            RowSpacing="0"
+                            RowDefinitions="Auto, Auto">
+                        <Label 
+                            Text="$890"
+                            Style="{StaticResource BannerQuantityTextStyle}"/>
+                        <Label 
+                            Grid.Row="1"
+                            Text="Loan"
+                            Style="{StaticResource BannerInfoTextStyle}"/>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Border>
+        <StackLayout
+            Grid.Row="1"
+            Style="{StaticResource OverviewInfoPanelStyle}">
+            <Grid
+                ColumnDefinitions="Auto, Auto, *">
+                <Label
+                    Text="Overview"
+                    Style="{StaticResource TitleTextStyle}"/>
+                <Image 
+                    Grid.Column="1"
+                    Source="bell_icon.png"
+                    Style="{StaticResource NotificationIconStyle}"/>
+                <Label 
+                    Grid.Column="2"
+                    Text="Sept 13, 2023"
+                    Style="{StaticResource DateTextStyle}"/>
+            </Grid>
+            <controls:TransactionView
+                Icon="arrow_up_icon.png"
+                Title="Sent"
+                Description="Sending Payment to Clients"
+                Price="$150"/>
+            <controls:TransactionView
+                Icon="arrow_down_icon.png"
+                Title="Receive"
+                Description="Receiving Salary from company"
+                Price="$250"/>
+            <controls:TransactionView
+                Icon="money_icon.png"
+                Title="Loan"
+                Description="Loan for the Car"
+                Price="$400"/>
+        </StackLayout>
+        <controls:TabBar 
+            Grid.Row="2"/>
+    </Grid>
+</ContentPage>

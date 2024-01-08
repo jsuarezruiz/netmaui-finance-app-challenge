@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
-		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
+		<TargetFrameworks>net8.0-android;net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net8.0-windows10.0.19041.0</TargetFrameworks>
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
-		<!-- <TargetFrameworks>$(TargetFrameworks);net7.0-tizen</TargetFrameworks> -->
+		<!-- <TargetFrameworks>$(TargetFrameworks);net8.0-tizen</TargetFrameworks> -->
 		<OutputType>Exe</OutputType>
 		<RootNamespace>FinanceApp</RootNamespace>
 		<UseMaui>true</UseMaui>
@@ -49,28 +49,30 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="Resources\Fonts\cocogoose.otf" />
-	  <None Remove="Resources\Images\arrow_down_icon.png" />
-	  <None Remove="Resources\Images\arrow_up_icon.png" />
-	  <None Remove="Resources\Images\back_icon.png" />
-	  <None Remove="Resources\Images\bell_icon.png" />
-	  <None Remove="Resources\Images\credit_card_icon.png" />
-	  <None Remove="Resources\Images\dollar_icon.png" />
-	  <None Remove="Resources\Images\email_icon.png" />
-	  <None Remove="Resources\Images\face01.png" />
-	  <None Remove="Resources\Images\face02.png" />
-	  <None Remove="Resources\Images\face03.png" />
-	  <None Remove="Resources\Images\face04.png" />
-	  <None Remove="Resources\Images\face05.png" />
-	  <None Remove="Resources\Images\home_icon.png" />
-	  <None Remove="Resources\Images\main_face.png" />
-	  <None Remove="Resources\Images\menu_icon.png" />
-	  <None Remove="Resources\Images\money_icon.png" />
-	  <None Remove="Resources\Images\plus_icon.png" />
-	  <None Remove="Resources\Images\profile_icon.png" />
+		<None Remove="Resources\Fonts\cocogoose.otf" />
+		<None Remove="Resources\Images\arrow_down_icon.png" />
+		<None Remove="Resources\Images\arrow_up_icon.png" />
+		<None Remove="Resources\Images\back_icon.png" />
+		<None Remove="Resources\Images\bell_icon.png" />
+		<None Remove="Resources\Images\credit_card_icon.png" />
+		<None Remove="Resources\Images\dollar_icon.png" />
+		<None Remove="Resources\Images\email_icon.png" />
+		<None Remove="Resources\Images\face01.png" />
+		<None Remove="Resources\Images\face02.png" />
+		<None Remove="Resources\Images\face03.png" />
+		<None Remove="Resources\Images\face04.png" />
+		<None Remove="Resources\Images\face05.png" />
+		<None Remove="Resources\Images\home_icon.png" />
+		<None Remove="Resources\Images\main_face.png" />
+		<None Remove="Resources\Images\menu_icon.png" />
+		<None Remove="Resources\Images\money_icon.png" />
+		<None Remove="Resources\Images\plus_icon.png" />
+		<None Remove="Resources\Images\profile_icon.png" />
 	</ItemGroup>
-	
+
 	<ItemGroup>
+		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.5" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.5" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 	</ItemGroup>
